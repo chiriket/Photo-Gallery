@@ -20,3 +20,23 @@ class LocationTestClass(TestCase):
     def tearDown(self):
         self.nairobi.delete_location()
 
+
+class CategoryTestClass(TestCase):
+    # Set Up Method
+    def setUp(self):
+        self.sports = Category(photo_category='Sports')
+        self.sports.save_category()
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.sports,Category))
+    
+    def tearDown(self):
+        self.sports.delete_category()
+    
+    def test_updating_category(self):
+        category = Category.get_category_id(self.sports.id)
+        category.update_category('SUV')
+        category = Category.get_category_id(self.sports.id)
+        self.assertTrue(category.photo_category == 'SUV')
+
+
