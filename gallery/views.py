@@ -10,19 +10,19 @@ def index(request):
     locations = Location.objects.all()
     return render(request, 'index.html', {'title':title, 'images':images, 'locations':locations})
 
-def single_image(request, image_id):
-    image = Image.get_image_by_id(image_id)
-    return render(request, 'single_image.html', {"image":image})
-
-# def single_image(request, category_name, image_id):
-#     # print(image_category)
-#     locations = Location.objects.all()
-
+# def single_image(request, image_id):
 #     image = Image.get_image_by_id(image_id)
-#     # Get category name
-#     # print(category_name)
-#     image_category = Image.objects.filter(category__photo_category = category_name)
-#     title = f'{category_name}'
+#     return render(request, 'single_image.html', {"image":image})
+
+def single_image(request, category_name, image_id):
+     # print(image_category)
+    locations = Location.objects.all()
+
+    image = Image.get_image_by_id(image_id)
+    # Get category name
+    # print(category_name)
+    image_category = Image.objects.filter(category__photo_category = category_name)
+    title = f'{category_name}'
     return render(request,'single_image.html',{'title':title, 'image':image, 'image_category':image_category, 'locations':locations})
 
 def location_filter(request, location):
@@ -37,16 +37,16 @@ def get_category(request, category):
     return render(request, 'category.html', locals())
 
 def search(request):
-    locations = Location.objects.all()
+    category = Category.objects.all()
     if 'category' in request.GET and request.GET['category']:
         search_term = request.GET.get('category')
         images_found = Image.search_image(search_term)
         message = f'{search_term}'
 
-        return render(request, 'search.html',{'message':message, 'images':images_found, 'locations':locations})
+        return render(request, 'search.html',{'message':message, 'images':images_found, 'category':category})
     else:
         message = "You haven't searched for any term"
-        return render(request, 'search.html',{'message':message, 'locations':locations})
+        return render(request, 'search.html',{'message':message, 'category':category})
 
     
 
