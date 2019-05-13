@@ -10,43 +10,54 @@ def index(request):
     locations = Location.objects.all()
     return render(request, 'index.html', {'title':title, 'images':images, 'locations':locations})
 
-# def single_image(request, image_id):
-#     image = Image.get_image_by_id(image_id)
-#     return render(request, 'single_image.html', {"image":image})
-
-def single_image(request, category_name, image_id):
-     # print(image_category)
-    locations = Location.objects.all()
-
+def single_image(request, image_id):
     image = Image.get_image_by_id(image_id)
-    # Get category name
-    # print(category_name)
-    image_category = Image.objects.filter(category__photo_category = category_name)
-    title = f'{category_name}'
-    return render(request,'single_image.html',{'title':title, 'image':image, 'image_category':image_category, 'locations':locations})
+    return render(request, 'single_image.html', {"image":image})
 
-def location_filter(request, location):
-    locations = Location.objects.all()
-    images = Image.filter_by_location(location)
-    title = f'{location} Photos'
-    return render(request, 'location.html', {'title':title, 'images':images, 'locations':locations})
+# def single_image(request, category_name, image_id):
+#      # print(image_category)
+#     locations = Location.objects.all()
+
+#     image = Image.get_image_by_id(image_id)
+#     # Get category name
+#     # print(category_name)
+#     image_category = Image.objects.filter(category__photo_category = category_name)
+#     title = f'{category_name}'
+#     return render(request,'single_image.html',{'title':title, 'image':image, 'image_category':image_category, 'locations':locations})
+
+def location_filter(request):
+    # locations = Location.objects.all()
+    images = Image.filter_by_location()
+    # title = f'{location} Photos'
+    return render(request, 'location.html', {"images":images,})
 
 def get_category(request, category):
     image_category = Image.objects.filter(category = category)
     # image = Image.filter_category(category)
     return render(request, 'category.html', locals())
 
-def search(request):
-    category = Category.objects.all()
-    if 'category' in request.GET and request.GET['category']:
-        search_term = request.GET.get('category')
-        images_found = Image.search_image(search_term)
-        message = f'{search_term}'
+# def search(request):
+#     category = Category.objects.all()
+#     if 'category' in request.GET and request.GET['category']:
+#         search_term = request.GET.get('category')
+#         images_found = Image.search_image(search_term)
+#         message = f'{search_term}'
 
-        return render(request, 'search.html',{'message':message, 'images':images_found, 'category':category})
+#         return render(request, 'search.html',{'message':message, 'images':images_found, 'category':category})
+#     else:
+#         message = "You haven't searched for any term"
+#         return render(request, 'search.html',{'message':message, 'category':category})
+
+def search(request):
+
+    if 'image' in request.GET and request.GET["image"]:
+        search_term = request.GET.get("image")
+        searched_images = Image.search_by_category(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"images": searched_images})
+
     else:
         message = "You haven't searched for any term"
-        return render(request, 'search.html',{'message':message, 'category':category})
-
-    
+        return render(request, 'search.html',{"message":message})
 
