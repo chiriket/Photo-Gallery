@@ -47,6 +47,7 @@ class Category(models.Model):
         return self.photo_category
 
 class Image(models.Model):
+    image_path = models.ImageField(upload_to = 'images/')
     name = models.CharField(max_length=30)
     description = models.TextField()
     post_date = models.DateTimeField(auto_now_add=True)

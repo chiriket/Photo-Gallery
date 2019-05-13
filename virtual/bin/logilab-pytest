@@ -1,0 +1,7 @@
+#!/home/shirley/Desktop/project/Photo-Gallery/virtual/bin/python
+
+import warnings
+warnings.simplefilter('default', DeprecationWarning)
+
+from logilab.common.pytest import run
+run()
