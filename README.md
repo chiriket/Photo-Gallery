@@ -1,12 +1,12 @@
-#### PHOTO GALLERY
+## PHOTO GALLERY
 
 ## By Shirley Keter ,2019
 
 ### Description
 The application is a Photo Gallery that allows users to view photos based on category and location.On clicking the photo one is able to view its details and also expand it.
 
-### Set Up and Installations
-## Prerequisites
+## Set Up and Installations
+### Prerequisites
 * Ubuntu Software
 * Python3.6
 * Postgres
@@ -15,7 +15,7 @@ The application is a Photo Gallery that allows users to view photos based on cat
 * Activate virtual environment
 * Install dependancies that will create an environment for the app to run pip3 install -r requirements.txt
 
-## Create the Database
+### Create the Database
 * psql
 * CREATE DATABASE gallery;
 * Create .env file and paste the following filling where appropriate:
@@ -26,18 +26,18 @@ USER = '<Username>'
 PASSWORD = '<password>'
 DEBUG = True
 
-## Run initial Migration
+### Run initial Migration
 * python3.6 manage.py makemigrations 
 * python3.6 manage.py migrate
 
-## Run the app
+### Run the app
 * python3.6 manage.py runserver
 * Open terminal on localhost:8000
 
-### Known bugs
+## Known bugs
 There are no known bugs.
 
-### Technologies used
+## Technologies used
 - Python 3.6
 - HTML
 - Bootstrap 4
@@ -45,8 +45,8 @@ There are no known bugs.
 - Heroku
 - Postgresql
 
-### Support and contact details
+## Support and contact details
 Contact me on shirleyketer@gmail.com
 
-###License
+## License
 Copyright (c) Shirley Keter
