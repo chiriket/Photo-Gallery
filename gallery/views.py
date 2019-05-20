@@ -36,18 +36,6 @@ def get_category(request, category):
     # image = Image.filter_category(category)
     return render(request, 'category.html', locals())
 
-# def search(request):
-#     category = Category.objects.all()
-#     if 'category' in request.GET and request.GET['category']:
-#         search_term = request.GET.get('category')
-#         images_found = Image.search_image(search_term)
-#         message = f'{search_term}'
-
-#         return render(request, 'search.html',{'message':message, 'images':images_found, 'category':category})
-#     else:
-#         message = "You haven't searched for any term"
-#         return render(request, 'search.html',{'message':message, 'category':category})
-
 def search(request):
 
     if 'image' in request.GET and request.GET["image"]:
